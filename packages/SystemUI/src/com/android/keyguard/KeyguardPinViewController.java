@@ -18,7 +18,10 @@ package com.android.keyguard;
 
 import static com.android.systemui.flags.Flags.LOCKSCREEN_ENABLE_LANDSCAPE;
 
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.view.View;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.android.internal.logging.UiEvent;
 import com.android.internal.logging.UiEventLogger;
@@ -31,6 +34,11 @@ import com.android.systemui.flags.Flags;
 import com.android.systemui.res.R;
 import com.android.systemui.statusbar.policy.DevicePostureController;
 import com.android.systemui.user.domain.interactor.SelectedUserInteractor;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class KeyguardPinViewController
         extends KeyguardPinBasedInputViewController<KeyguardPINView> {
@@ -49,6 +57,8 @@ public class KeyguardPinViewController
     private final UiEventLogger mUiEventLogger;
 
     private boolean mDisabledAutoConfirmation;
+
+    private static List<Integer> sNumbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
 
     protected KeyguardPinViewController(KeyguardPINView view,
             KeyguardUpdateMonitor keyguardUpdateMonitor,
@@ -87,6 +97,31 @@ public class KeyguardPinViewController
         }
         mPasswordEntry.setUserActivityListener(this::onUserInput);
         mView.onDevicePostureChanged(mPostureController.getDevicePosture());
+
+        boolean scramblePin = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.LOCKSCREEN_PIN_SCRAMBLE_LAYOUT, 0,
+                UserHandle.USER_CURRENT) == 1;
+
+        if (scramblePin) {
+            Collections.shuffle(sNumbers);
+            // get all children who are NumPadKey's
+            ConstraintLayout container = (ConstraintLayout) mView.findViewById(R.id.pin_container);
+
+            List<NumPadKey> views = new ArrayList<NumPadKey>();
+            for (int i = 0; i < container.getChildCount(); i++) {
+                View view = container.getChildAt(i);
+                if (view.getClass() == NumPadKey.class) {
+                    views.add((NumPadKey) view);
+                }
+            }
+
+            // reset the digits in the views
+            for (int i = 0; i < sNumbers.size(); i++) {
+                NumPadKey view = views.get(i);
+                view.setDigit(sNumbers.get(i));
+            }
+        }
+
         mPostureController.addCallback(mPostureCallback);
         if (mFeatureFlags.isEnabled(Flags.AUTO_PIN_CONFIRMATION)) {
             mPasswordEntry.setUsePinShapes(true);
