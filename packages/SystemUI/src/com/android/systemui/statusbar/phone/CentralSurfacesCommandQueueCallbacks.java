@@ -81,6 +81,7 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
     private final com.android.systemui.shade.ShadeController mShadeController;
     private final CommandQueue mCommandQueue;
     private final ShadeViewController mShadeViewController;
+    private final FlashlightController mFlashlightController;
     private final RemoteInputQuickSettingsDisabler mRemoteInputQuickSettingsDisabler;
     private final MetricsLogger mMetricsLogger;
     private final KeyguardUpdateMonitor mKeyguardUpdateMonitor;
@@ -537,5 +538,12 @@ public class CentralSurfacesCommandQueueCallbacks implements CommandQueue.Callba
         mShadeViewController.performHapticFeedback(
                 HapticFeedbackConstants.GESTURE_START
         );
+    }
+
+    @Override
+    public void toggleCameraFlash() {
+        if (mFlashlightController.isAvailable()) {
+            mFlashlightController.setFlashlight(!mFlashlightController.isEnabled());
+        }
     }
 }
