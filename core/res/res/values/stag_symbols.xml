@@ -101,4 +101,8 @@
 
     <!-- Global Actions pref list -->
     <java-symbol type="array" name="custom_config_globalActionsList" />
+
+    <!-- Light / Regular style fonts -->
+    <java-symbol type="string" name="config_lightFontFamily" />
+    <java-symbol type="string" name="config_regularFontFamily" />
 </resources>
