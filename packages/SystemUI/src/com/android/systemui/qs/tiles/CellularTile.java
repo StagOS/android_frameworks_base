@@ -51,6 +51,7 @@ import com.android.systemui.plugins.qs.QSIconView;
 import com.android.systemui.plugins.qs.QSTile.SignalState;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.QsEventLogger;
 import com.android.systemui.qs.SignalTileView;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
@@ -66,7 +67,7 @@ import javax.inject.Inject;
 /** Quick settings tile: Cellular **/
 public class CellularTile extends QSTileImpl<SignalState> {
 
-    public static final String TILE_SPEC = "cellular";
+    public static final String TILE_SPEC = "cell";
     private static final String ENABLE_SETTINGS_DATA_PLAN = "enable.settings.data.plan";
 
     private final NetworkController mController;
@@ -77,6 +78,7 @@ public class CellularTile extends QSTileImpl<SignalState> {
     @Inject
     public CellularTile(
             QSHost host,
+            QsEventLogger uiEventLogger,
             @Background Looper backgroundLooper,
             @Main Handler mainHandler,
             FalsingManager falsingManager,
@@ -88,7 +90,7 @@ public class CellularTile extends QSTileImpl<SignalState> {
             KeyguardStateController keyguardStateController
 
     ) {
-        super(host, backgroundLooper, mainHandler, falsingManager, metricsLogger,
+        super(host, uiEventLogger, backgroundLooper, mainHandler, falsingManager, metricsLogger,
                 statusBarStateController, activityStarter, qsLogger);
         mController = networkController;
         mKeyguard = keyguardStateController;
