@@ -45,6 +45,7 @@ import com.android.systemui.plugins.qs.QSTile.SignalState;
 import com.android.systemui.plugins.statusbar.StatusBarStateController;
 import com.android.systemui.qs.AlphaControlledSignalTileView;
 import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.QsEventLogger;
 import com.android.systemui.qs.logging.QSLogger;
 import com.android.systemui.qs.tileimpl.QSIconViewImpl;
 import com.android.systemui.qs.tileimpl.QSTileImpl;
@@ -72,6 +73,7 @@ public class WifiTile extends QSTileImpl<SignalState> {
     @Inject
     public WifiTile(
             QSHost host,
+            QsEventLogger uiEventLogger,
             @Background Looper backgroundLooper,
             @Main Handler mainHandler,
             FalsingManager falsingManager,
@@ -82,7 +84,7 @@ public class WifiTile extends QSTileImpl<SignalState> {
             NetworkController networkController,
             AccessPointController accessPointController
     ) {
-        super(host, backgroundLooper, mainHandler, falsingManager, metricsLogger,
+        super(host, uiEventLogger, backgroundLooper, mainHandler, falsingManager, metricsLogger,
                 statusBarStateController, activityStarter, qsLogger);
         mController = networkController;
         mWifiController = accessPointController;
