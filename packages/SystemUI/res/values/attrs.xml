@@ -118,6 +118,7 @@
     <attr name="wallpaperTextColorSecondary" format="reference|color" />
     <attr name="wallpaperTextColorAccent" format="reference|color" />
     <attr name="backgroundProtectedStyle" format="reference" />
+    <attr name="underSurfaceColor" format="reference|color" />
 
     <!-- color attribute tokens for QS -->
     <attr name="isQsTheme" format="boolean" />

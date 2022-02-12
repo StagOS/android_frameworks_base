@@ -103,10 +103,10 @@ open class QSTileViewImpl @JvmOverloads constructor(
     private val colorUnavailable = Utils.getColorAttrDefaultColor(context, R.attr.shadeDisabled)
 
     private val overlayColorActive = Utils.applyAlpha(
-        /* alpha= */ 0.11f,
+        /* alpha= */ 0.2f,
         Utils.getColorAttrDefaultColor(context, R.attr.onShadeActive))
     private val overlayColorInactive = Utils.applyAlpha(
-        /* alpha= */ 0.08f,
+        /* alpha= */ 0.2f,
         Utils.getColorAttrDefaultColor(context, R.attr.onShadeInactive))
 
     private val colorLabelActive = Utils.getColorAttrDefaultColor(context, R.attr.onShadeActive)

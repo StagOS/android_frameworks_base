@@ -132,7 +132,7 @@ public class InternetTile extends SecureQSTile<QSTile.BooleanState> {
         }
         mHandler.post(() -> mInternetDialogManager.create(true,
                 mAccessPointController.canConfigMobileData(),
-                mAccessPointController.canConfigWifi(), view));
+                mAccessPointController.canConfigWifi(), null));
     }
 
     @Override

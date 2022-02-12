@@ -655,6 +655,10 @@
     <!-- Whether to use window background blur for the volume dialog. -->
     <bool name="config_volumeDialogUseBackgroundBlur">false</bool>
 
+    <!-- BlurUI -->
+    <integer name="background_blur_radius">44</integer>
+    <item name="background_blur_colour_opacity" format="float" type="dimen">0.44</item>
+
     <!-- The properties of the face auth front camera for outer display in pixels -->
     <integer-array name="config_face_auth_props">
         <!-- sensorLocationX -->
