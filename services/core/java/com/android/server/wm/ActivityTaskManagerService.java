@@ -286,6 +286,7 @@ import com.android.server.uri.UriGrantsManagerInternal;
 import com.android.server.wallpaper.WallpaperManagerInternal;
 import com.android.wm.shell.Flags;
 import com.android.internal.util.stag.PixelPropsUtils;
+import com.android.server.usage.AppStandbyInternal;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -804,6 +805,8 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
 
     private Set<Integer> mProfileOwnerUids = new ArraySet<Integer>();
 
+    public AppStandbyInternal mAppStandbyInternal;
+
     private final class SettingObserver extends ContentObserver {
         private final Uri mFontScaleUri = Settings.System.getUriFor(FONT_SCALE);
         private final Uri mHideErrorDialogsUri = Settings.Global.getUriFor(HIDE_ERROR_DIALOGS);
@@ -889,6 +892,7 @@ public class ActivityTaskManagerService extends IActivityTaskManager.Stub {
             // TODO(b/258792202) Cleanup once ASM is ready to launch
             ActivitySecurityModelFeatureFlags.initialize(mContext.getMainExecutor(), pm);
         }
+        mAppStandbyInternal = LocalServices.getService(AppStandbyInternal.class);
     }
 
     public void onInitPowerManagement() {
