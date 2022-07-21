@@ -79,6 +79,7 @@ import android.telephony.TelephonyManager;
 import android.util.ArraySet;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.CrossWindowBlurListeners;
 import android.view.GestureDetector;
 import android.view.IWindowManager;
 import android.view.LayoutInflater;
@@ -134,6 +135,9 @@ import com.android.systemui.plugins.GlobalActionsPanelPlugin;
 import com.android.systemui.scrim.ScrimDrawable;
 import com.android.systemui.settings.UserTracker;
 import com.android.systemui.shade.ShadeController;
+import com.android.systemui.dump.DumpManager;
+import com.android.systemui.model.SysUiState;
+import com.android.systemui.statusbar.BlurUtils;
 import com.android.systemui.statusbar.NotificationShadeWindowController;
 import com.android.systemui.statusbar.VibratorHelper;
 import com.android.systemui.statusbar.phone.LightBarController;
@@ -942,16 +946,12 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
         public View create(
                 Context context, View convertView, ViewGroup parent, LayoutInflater inflater) {
             View v = super.create(context, convertView, parent, inflater);
-            int textColor = getEmergencyTextColor(context);
-            int iconColor = getEmergencyIconColor(context);
-            int backgroundColor = getEmergencyBackgroundColor(context);
             TextView messageView = v.findViewById(R.id.message);
-            messageView.setTextColor(textColor);
             messageView.setSelected(true); // necessary for marquee to work
             ImageView icon = v.findViewById(R.id.icon);
-            icon.getDrawable().setTint(iconColor);
-            icon.setBackgroundTintList(ColorStateList.valueOf(backgroundColor));
-            v.setBackgroundTintList(ColorStateList.valueOf(backgroundColor));
+            icon.getDrawable().setTint(getEmergencyIconColor(context));
+            icon.setBackgroundResource(com.android.systemui.R.drawable.global_actions_lite_emergency_button);
+//            v.setBackgroundTintList(ColorStateList.valueOf(backgroundColor));
             return v;
         }
 
@@ -966,19 +966,9 @@ public class GlobalActionsDialogLite implements DialogInterface.OnDismissListene
         }
     }
 
-    protected int getEmergencyTextColor(Context context) {
-        return context.getResources().getColor(
-                com.android.systemui.res.R.color.global_actions_lite_text);
-    }
-
     protected int getEmergencyIconColor(Context context) {
         return context.getResources().getColor(
                 com.android.systemui.res.R.color.global_actions_lite_emergency_icon);
-    }
-
-    protected int getEmergencyBackgroundColor(Context context) {
-        return context.getResources().getColor(
-                com.android.systemui.res.R.color.global_actions_lite_emergency_background);
     }
 
     private class EmergencyAffordanceAction extends EmergencyAction {
