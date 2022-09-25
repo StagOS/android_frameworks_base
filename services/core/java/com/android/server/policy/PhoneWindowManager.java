@@ -6127,6 +6127,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         VibrationEffect.Composition.PRIMITIVE_LOW_TICK, 0.2f,
                         VibrationEffect.EFFECT_TEXTURE_TICK);
 
+            case HapticFeedbackConstants.GRANULAR_SHORT_VIBRATE:
+                return VibrationEffect.get(VibrationEffect.EFFECT_CLICK);
+
             case HapticFeedbackConstants.NO_HAPTICS:
             default:
                 return null;
