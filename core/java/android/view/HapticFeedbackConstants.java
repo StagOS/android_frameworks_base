@@ -210,6 +210,13 @@ public class HapticFeedbackConstants {
     public static final int SEGMENT_FREQUENT_TICK = 27;
 
     /**
+     * Oplus specific haptic effect
+     *
+     * @hide
+     */
+    public static final int GRANULAR_SHORT_VIBRATE = 302;
+
+    /**
      * The phone has booted with safe mode enabled.
      * This is a private constant.  Feel free to renumber as desired.
      * @hide
