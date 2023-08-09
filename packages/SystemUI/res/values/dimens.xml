@@ -1119,6 +1119,7 @@
 
     <dimen name="privacy_dialog_background_radius_large">12dp</dimen>
     <dimen name="privacy_dialog_background_radius_small">4dp</dimen>
+    <!-- Size of the RAT type for CellularTile -->
 
     <!-- Size of media cards in the QSPanel carousel -->
     <dimen name="qs_media_padding">16dp</dimen>

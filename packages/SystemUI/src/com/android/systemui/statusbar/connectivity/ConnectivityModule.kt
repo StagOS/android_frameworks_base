@@ -22,11 +22,13 @@ import com.android.systemui.qs.tileimpl.QSTileImpl
 import com.android.systemui.qs.tiles.AirplaneModeTile
 import com.android.systemui.qs.tiles.BluetoothTile
 import com.android.systemui.qs.tiles.CastTile
+import com.android.systemui.qs.tiles.CellularTile
 import com.android.systemui.qs.tiles.DataSaverTile
 import com.android.systemui.qs.tiles.HotspotTile
 import com.android.systemui.qs.tiles.InternetTile
 import com.android.systemui.qs.tiles.InternetTileNewImpl
 import com.android.systemui.qs.tiles.NfcTile
+import com.android.systemui.qs.tiles.WifiTile
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -35,6 +37,18 @@ import dagger.multibindings.StringKey
 
 @Module
 interface ConnectivityModule {
+
+    /** Inject CellularTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(CellularTile.TILE_SPEC)
+    fun bindCellularTile(cellularTile: CellularTile): QSTileImpl<*>
+
+    /** Inject WifiTile into tileMap in QSModule */
+    @Binds
+    @IntoMap
+    @StringKey(WifiTile.TILE_SPEC)
+    fun bindWifiTile(wifiTile: WifiTile): QSTileImpl<*>
 
     /** Inject BluetoothTile into tileMap in QSModule */
     @Binds
