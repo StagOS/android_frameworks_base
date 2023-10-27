@@ -647,6 +647,9 @@ public class TriStateUiControllerImpl implements TriStateUiController,
         updateTriStateLayout();
     }
 
+    @Override
+    public void onShowCsdWarning(int csdWarning, int durationMs) {}
+
     public int getAttrColor(int attr) {
         TypedArray ta = mContext.obtainStyledAttributes(new int[]{attr});
         int colorAccent = ta.getColor(0, 0);
