@@ -123,6 +123,9 @@ public class TriStateUiControllerImpl implements TriStateUiController,
         public void onDismissRequested(int reason) { }
 
         @Override
+        public void onShowCsdWarning(int csdWarning, int durationMs) {}
+
+        @Override
         public void onScreenOff() { }
 
         @Override
@@ -646,9 +649,6 @@ public class TriStateUiControllerImpl implements TriStateUiController,
         initDialog();
         updateTriStateLayout();
     }
-
-    @Override
-    public void onShowCsdWarning(int csdWarning, int durationMs) {}
 
     public int getAttrColor(int attr) {
         TypedArray ta = mContext.obtainStyledAttributes(new int[]{attr});
