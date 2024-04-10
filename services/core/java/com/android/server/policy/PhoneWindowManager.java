@@ -1132,7 +1132,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (!mPowerKeyHandled) {
             if (!interactive) {
                 if (!mTorchGesture) {
-                wakeUpFromWakeKey(event);
+                    wakeUpFromWakeKey(event);
                 }
             }
         } else {
@@ -1246,7 +1246,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 }
             }
         } else if (mTorchGesture && beganFromNonInteractive) {
-            wakeUpFromPowerKey(eventTime);
+            wakeUpFromWakeKey(SystemClock.uptimeMillis(), KEYCODE_POWER, /* isDown= */ false);
         }
     }
 
@@ -1882,7 +1882,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         if (mGlobalActions == null) {
             mGlobalActions = mGlobalActionsFactory.get();
         }
-        final boolean keyguardShowing = isKeyguardShowingAndNotOccluded();
         mGlobalActions.showDialog(keyguardShowing, isDeviceProvisioned());
         // since it took two seconds of long press to bring this up,
         // poke the wake lock so they have some time to see the dialog.
