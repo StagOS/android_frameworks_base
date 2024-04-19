@@ -143,6 +143,10 @@ public class TriStateUiControllerImpl implements TriStateUiController,
         @Override
         public void onAccessibilityModeChanged(Boolean showA11yStream) { }
 
+
+        @Override
+        public void onShowCsdWarning(int csdWarning, int durationMs) {}
+
         @Override
         public void onCaptionComponentStateChanged(
                 Boolean isComponentEnabled, Boolean fromTooltip) { }
@@ -651,8 +655,8 @@ public class TriStateUiControllerImpl implements TriStateUiController,
         updateTriStateLayout();
     }
 
-    @Override
-    public void onShowCsdWarning(int csdWarning, int durationMs) {}
+    //@Override
+    //public void onShowCsdWarning(int csdWarning, int durationMs) {}
 
     public int getAttrColor(int attr) {
         TypedArray ta = mContext.obtainStyledAttributes(new int[]{attr});
