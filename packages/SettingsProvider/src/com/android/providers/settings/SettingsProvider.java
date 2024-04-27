@@ -5552,46 +5552,10 @@ public class SettingsProvider extends ContentProvider {
                                                     .string
                                                     .config_wearSysUiMainActivity));
 
-                    currentVersion = 204;
-                }
-
-                if (currentVersion == 204) {
-                    // Version 204: Replace 'wifi' or 'cell' tiles with 'internet' if existed.
-                    final SettingsState secureSettings = getSecureSettingsLocked(userId);
-                    final Setting currentValue = secureSettings.getSettingLocked(Secure.QS_TILES);
-                    if (!currentValue.isNull()) {
-                        String tileList = currentValue.getValue();
-                        String[] tileSplit = tileList.split(",");
-                        final ArrayList<String> tiles = new ArrayList<String>();
-                        boolean hasInternetTile = false;
-                        for (int i = 0; i < tileSplit.length; i++) {
-                            String tile = tileSplit[i].trim();
-                            if (tile.isEmpty()) continue;
-                            tiles.add(tile);
-                            if (tile.equals("internet")) hasInternetTile = true;
-                        }
-                        if (!hasInternetTile) {
-                            if (tiles.contains("wifi")) {
-                                // Replace the WiFi with Internet, and remove the Cell
-                                tiles.set(tiles.indexOf("wifi"), "internet");
-                                tiles.remove("cell");
-                            } else if (tiles.contains("cell")) {
-                                // Replace the Cell with Internet
-                                tiles.set(tiles.indexOf("cell"), "internet");
-                            }
-                        } else {
-                            tiles.remove("wifi");
-                            tiles.remove("cell");
-                        }
-                        secureSettings.insertSettingOverrideableByRestoreLocked(
-                                Secure.QS_TILES,
-                                TextUtils.join(",", tiles),
-                                null /* tag */,
-                                true /* makeDefault */,
-                                SettingsState.SYSTEM_PACKAGE_NAME);
-                    }
                     currentVersion = 205;
                 }
+
+		// Version 204: Why would someone want to remove wifi and cell tile
 
                 if (currentVersion == 205) {
                     // Version 205: Set the default value for QR Code Scanner Setting:
