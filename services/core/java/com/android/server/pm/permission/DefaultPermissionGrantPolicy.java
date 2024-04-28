@@ -919,7 +919,7 @@ final class DefaultPermissionGrantPolicy {
         }
 
         // Updater app
-        grantPermissionsToSystemPackage(pm, "org.pixysos.updater", userId, NOTIFICATION_PERMISSIONS);
+        grantPermissionsToSystemPackage(pm, "org.lineageos.updater", userId, NOTIFICATION_PERMISSIONS);
 
         // There is no real "marker" interface to identify the shared storage backup, it is
         // hardcoded in BackupManagerService.SHARED_BACKUP_AGENT_PACKAGE.
