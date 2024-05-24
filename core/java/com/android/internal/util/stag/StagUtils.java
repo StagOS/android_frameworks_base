@@ -372,12 +372,20 @@ public class StagUtils {
                 ActivityManager am =
                         (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
                 IActivityManager ams = ActivityManager.getService();
+                // Ensure Settings is killed first
+                for (ActivityManager.RunningAppProcessInfo app: am.getRunningAppProcesses()) {
+                    if ("com.android.settings".equals(app.processName)) {
+                        ams.killApplicationProcess(app.processName, app.uid);
+                        break;
+                    }
+                }
                 for (ActivityManager.RunningAppProcessInfo app: am.getRunningAppProcesses()) {
                     if ("com.android.systemui".equals(app.processName)) {
                         ams.killApplicationProcess(app.processName, app.uid);
                         break;
                     }
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
