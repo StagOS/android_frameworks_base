@@ -342,7 +342,11 @@ public class StagUtils {
     }
 
     public static void restartSystemUi(Context context) {
-        new RestartSystemUiTask(context).execute();
+        restartSystemUi(context, "com.android.systemui");
+    }
+
+    public static void restartSystemUi(Context context, String packageName) {
+        new RestartSystemUiTask(context, packageName).execute();
     }
 
     public static void showSystemUiRestartDialog(Context context) {
@@ -358,12 +362,27 @@ public class StagUtils {
                 .show();
     }
 
+    public static void showPackageRestartDialog(Context context, String packageName) {
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.package_restart_title)
+                .setMessage(R.string.package_restart_message)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        restartSystemUi(context, packageName);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
     private static class RestartSystemUiTask extends AsyncTask<Void, Void, Void> {
         private Context mContext;
+        private String mPackageName;
 
-        public RestartSystemUiTask(Context context) {
+        public RestartSystemUiTask(Context context, String packageName) {
             super();
             mContext = context;
+            mPackageName = packageName;
         }
 
         @Override
@@ -372,20 +391,12 @@ public class StagUtils {
                 ActivityManager am =
                         (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
                 IActivityManager ams = ActivityManager.getService();
-                // Ensure Settings is killed first
-                for (ActivityManager.RunningAppProcessInfo app: am.getRunningAppProcesses()) {
-                    if ("com.android.settings".equals(app.processName)) {
+                for (ActivityManager.RunningAppProcessInfo app : am.getRunningAppProcesses()) {
+                    if (mPackageName.equals(app.processName)) {
                         ams.killApplicationProcess(app.processName, app.uid);
                         break;
                     }
                 }
-                for (ActivityManager.RunningAppProcessInfo app: am.getRunningAppProcesses()) {
-                    if ("com.android.systemui".equals(app.processName)) {
-                        ams.killApplicationProcess(app.processName, app.uid);
-                        break;
-                    }
-                }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
