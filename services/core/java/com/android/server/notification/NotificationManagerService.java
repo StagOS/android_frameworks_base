@@ -2427,7 +2427,7 @@ public class NotificationManagerService extends SystemService {
 
     @VisibleForTesting
     void clearNotifications() {
-        synchronized (mNotificationList) {
+        synchronized (mNotificationLock) {
             mEnqueuedNotifications.clear();
             mNotificationList.clear();
             mNotificationsByKey.clear();
@@ -2437,21 +2437,27 @@ public class NotificationManagerService extends SystemService {
 
     @VisibleForTesting
     void addNotification(NotificationRecord r) {
-        mNotificationList.add(r);
-        mNotificationsByKey.put(r.getSbn().getKey(), r);
-        if (r.getSbn().isGroup()) {
-            mSummaryByGroupKey.put(r.getGroupKey(), r);
+        synchronized (mNotificationLock) {
+            mNotificationList.add(r);
+            mNotificationsByKey.put(r.getSbn().getKey(), r);
+            if (r.getSbn().isGroup()) {
+                mSummaryByGroupKey.put(r.getGroupKey(), r);
+            }
         }
     }
 
     @VisibleForTesting
     void addEnqueuedNotification(NotificationRecord r) {
-        mEnqueuedNotifications.add(r);
+        synchronized (mNotificationLock) {
+            mEnqueuedNotifications.add(r);
+        }
     }
 
     @VisibleForTesting
     NotificationRecord getNotificationRecord(String key) {
-        return mNotificationsByKey.get(key);
+        synchronized (mNotificationLock) {
+            return mNotificationsByKey.get(key);
+        }
     }
 
 
