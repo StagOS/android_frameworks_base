@@ -78,4 +78,9 @@
     <java-symbol name="reboot_systemui_title" type="string" />
     <java-symbol name="reboot_systemui_message" type="string" />
     <java-symbol type="array" name="config_rebootActionsList" />
+
+    <!-- PropImitationHooks -->
+    <java-symbol type="array" name="config_certifiedBuildProperties" />
+    <java-symbol type="string" name="config_stockFingerprint" />
+
 </resources>
