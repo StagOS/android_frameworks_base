@@ -6,4 +6,6 @@
     <!-- Allow devices override audio panel location to the left side -->
     <bool name="config_audioPanelOnLeftSide">false</bool>
 
+    <!-- Config to denote that our udfps position is at the bottom -->
+    <bool name="config_udfpsPositionBottom">true</bool>
 </resources>

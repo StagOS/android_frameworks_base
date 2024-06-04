@@ -403,7 +403,10 @@ public class AuthContainerView extends LinearLayout
                     new BiometricModalities(fpProps, faceProps));
 
             final BiometricPromptLayout view = (BiometricPromptLayout) layoutInflater.inflate(
-                    R.layout.biometric_prompt_layout, null, false);
+                    getResources().getBoolean(R.bool.config_udfpsPositionBottom)
+                            ? R.layout.biometric_prompt_layout_low_udfps
+                            : R.layout.biometric_prompt_layout,
+                    null, false);
             mBiometricView = BiometricViewBinder.bind(view, viewModel, mPanelController,
                     // TODO(b/201510778): This uses the wrong timeout in some cases
                     getJankListener(view, TRANSIT,
