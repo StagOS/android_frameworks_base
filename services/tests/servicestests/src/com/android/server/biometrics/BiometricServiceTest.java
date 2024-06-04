@@ -533,7 +533,7 @@ public class BiometricServiceTest {
         setupAuthForOnly(TYPE_FACE, Authenticators.BIOMETRIC_STRONG);
 
         // Disabled in user settings receives onError
-        when(mBiometricService.mSettingObserver.getEnabledForApps(anyInt())).thenReturn(false);
+        when(mBiometricService.mSettingObserver.getEnabledForApps(TYPE_FACE, anyInt())).thenReturn(false);
         invokeAuthenticate(mBiometricService.mImpl, mReceiver1, false /* requireConfirmation */,
                 null /* authenticators */, false /* useDefaultSubtitle */,
                 false /* deviceCredentialAllowed */);
@@ -545,7 +545,7 @@ public class BiometricServiceTest {
 
         // Enrolled, not disabled in settings, user requires confirmation in settings
         resetReceivers();
-        when(mBiometricService.mSettingObserver.getEnabledForApps(anyInt())).thenReturn(true);
+        when(mBiometricService.mSettingObserver.getEnabledForApps(TYPE_FACE, anyInt())).thenReturn(true);
         when(mBiometricService.mSettingObserver.getConfirmationAlwaysRequired(
                 anyInt() /* modality */, anyInt() /* userId */))
                 .thenReturn(true);
@@ -1411,7 +1411,7 @@ public class BiometricServiceTest {
     @Test
     public void testCanAuthenticate_whenBiometricsNotEnabledForApps() throws Exception {
         setupAuthForOnly(TYPE_FACE, Authenticators.BIOMETRIC_STRONG);
-        when(mBiometricService.mSettingObserver.getEnabledForApps(anyInt())).thenReturn(false);
+        when(mBiometricService.mSettingObserver.getEnabledForApps(TYPE_FINGERPRINT, anyInt())).thenReturn(false);
         when(mTrustManager.isDeviceSecure(anyInt(), anyInt()))
                 .thenReturn(true);
 
@@ -1538,7 +1538,7 @@ public class BiometricServiceTest {
 
         final int testId = 0;
 
-        when(mBiometricService.mSettingObserver.getEnabledForApps(anyInt())).thenReturn(true);
+        when(mBiometricService.mSettingObserver.getEnabledForApps(TYPE_FINGERPRINT, anyInt())).thenReturn(true);
 
         when(mFingerprintAuthenticator.hasEnrolledTemplates(anyInt(), any()))
                 .thenReturn(true);
@@ -1825,7 +1825,7 @@ public class BiometricServiceTest {
         mBiometricService = new BiometricService(mContext, mInjector);
         mBiometricService.onStart();
 
-        when(mBiometricService.mSettingObserver.getEnabledForApps(anyInt())).thenReturn(true);
+        when(mBiometricService.mSettingObserver.getEnabledForApps(modality, anyInt())).thenReturn(true);
 
         if ((modality & TYPE_FINGERPRINT) != 0) {
             when(mFingerprintAuthenticator.hasEnrolledTemplates(anyInt(), any()))
@@ -1858,7 +1858,7 @@ public class BiometricServiceTest {
         mBiometricService = new BiometricService(mContext, mInjector);
         mBiometricService.onStart();
 
-        when(mBiometricService.mSettingObserver.getEnabledForApps(anyInt())).thenReturn(true);
+        when(mBiometricService.mSettingObserver.getEnabledForApps(TYPE_FACE, anyInt())).thenReturn(true);
 
         assertEquals(modalities.length, strengths.length);
 

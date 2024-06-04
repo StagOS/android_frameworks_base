@@ -88,6 +88,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 
+import javax.sound.sampled.AudioFileFormat.Type;
+
 @Presubmit
 @SmallTest
 public class AuthSessionTest {
@@ -711,7 +713,7 @@ public class AuthSessionTest {
                 type,
                 false /* resetLockoutRequiresHardwareAuthToken */));
 
-        when(mSettingObserver.getEnabledForApps(anyInt())).thenReturn(true);
+        when(mSettingObserver.getEnabledForApps(TYPE_FINGERPRINT, anyInt())).thenReturn(true);
     }
 
     private void setupFace(int id, boolean confirmationAlwaysRequired,
@@ -733,6 +735,6 @@ public class AuthSessionTest {
             }
         });
 
-        when(mSettingObserver.getEnabledForApps(anyInt())).thenReturn(true);
+        when(mSettingObserver.getEnabledForApps(TYPE_FACE, anyInt())).thenReturn(true);
     }
 }

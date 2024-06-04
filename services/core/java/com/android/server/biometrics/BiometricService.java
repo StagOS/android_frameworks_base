@@ -263,6 +263,7 @@ public class BiometricService extends SystemService {
 
         private final Map<Integer, Boolean> mBiometricEnabledOnKeyguard = new HashMap<>();
         private final Map<Integer, Boolean> mBiometricEnabledForApps = new HashMap<>();
+        private final Map<Integer, Boolean> mFaceEnabledForApps = new HashMap<>();
         private final Map<Integer, Boolean> mFaceAlwaysRequireConfirmation = new HashMap<>();
 
         /**
@@ -297,20 +298,19 @@ public class BiometricService extends SystemService {
                         false /* notifyForDescendants */,
                         this /* observer */,
                         UserHandle.USER_ALL);
-                mContentResolver.registerContentObserver(FACE_UNLOCK_APP_ENABLED,
-                        false /* notifyForDescendants */,
-                        this /* observer */,
-                        UserHandle.USER_ALL);
-            } else {
-                mContentResolver.registerContentObserver(BIOMETRIC_KEYGUARD_ENABLED,
-                        false /* notifyForDescendants */,
-                        this /* observer */,
-                        UserHandle.USER_ALL);
-                mContentResolver.registerContentObserver(BIOMETRIC_APP_ENABLED,
-                        false /* notifyForDescendants */,
-                        this /* observer */,
-                        UserHandle.USER_ALL);
             }
+            mContentResolver.registerContentObserver(FACE_UNLOCK_APP_ENABLED,
+                    false /* notifyForDescendants */,
+                    this /* observer */,
+                    UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(BIOMETRIC_KEYGUARD_ENABLED,
+                    false /* notifyForDescendants */,
+                    this /* observer */,
+                    UserHandle.USER_ALL);
+            mContentResolver.registerContentObserver(BIOMETRIC_APP_ENABLED,
+                    false /* notifyForDescendants */,
+                    this /* observer */,
+                    UserHandle.USER_ALL);
             mContentResolver.registerContentObserver(FACE_UNLOCK_ALWAYS_REQUIRE_CONFIRMATION,
                     false /* notifyForDescendants */,
                     this /* observer */,
@@ -330,7 +330,7 @@ public class BiometricService extends SystemService {
                     notifyEnabledOnKeyguardCallbacks(userId);
                 }
             } else if (FACE_UNLOCK_APP_ENABLED.equals(uri)) {
-                mBiometricEnabledForApps.put(userId, Settings.Secure.getIntForUser(
+                mFaceEnabledForApps.put(userId, Settings.Secure.getIntForUser(
                                 mContentResolver,
                                 Settings.Secure.FACE_UNLOCK_APP_ENABLED,
                                 DEFAULT_APP_ENABLED ? 1 : 0 /* default */,
@@ -371,15 +371,13 @@ public class BiometricService extends SystemService {
             return mBiometricEnabledOnKeyguard.get(userId);
         }
 
-        public boolean getEnabledForApps(int userId) {
-            if (!mBiometricEnabledForApps.containsKey(userId)) {
-                if (mUseLegacyFaceOnlySettings) {
-                    onChange(true /* selfChange */, FACE_UNLOCK_APP_ENABLED, userId);
-                } else {
-                    onChange(true /* selfChange */, BIOMETRIC_APP_ENABLED, userId);
-                }
+        public boolean getEnabledForApps(@BiometricAuthenticator.Modality int modality, int userId) {
+            switch(modality){
+                case TYPE_FACE:
+                    return mFaceEnabledForApps.getOrDefault(userId, DEFAULT_APP_ENABLED);
+                default:
+                    return mBiometricEnabledForApps.getOrDefault(userId, DEFAULT_APP_ENABLED);
             }
-            return mBiometricEnabledForApps.getOrDefault(userId, DEFAULT_APP_ENABLED);
         }
 
         public boolean getConfirmationAlwaysRequired(@BiometricAuthenticator.Modality int modality,

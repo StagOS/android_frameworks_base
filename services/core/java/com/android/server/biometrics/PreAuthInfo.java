@@ -232,7 +232,7 @@ class PreAuthInfo {
 
     private static boolean isEnabledForApp(BiometricService.SettingObserver settingObserver,
             @BiometricAuthenticator.Modality int modality, int userId) {
-        return settingObserver.getEnabledForApps(userId);
+        return settingObserver.getEnabledForApps(modality, userId);
     }
 
     private static boolean isBiometricDisabledByDevicePolicy(
