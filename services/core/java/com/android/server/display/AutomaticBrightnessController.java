@@ -42,7 +42,6 @@ import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.Trace;
-import android.provider.Settings;
 import android.util.EventLog;
 import android.util.MathUtils;
 import android.util.Slog;
@@ -361,7 +360,6 @@ public class AutomaticBrightnessController {
         mBrightnessRangeController = brightnessModeController;
         mBrightnessThrottler = brightnessThrottler;
         mBrightnessMappingStrategyMap = brightnessMappingStrategyMap;
-        mAutoBrightnessOneShot = false;)
 
         // Use the given short-term model
         if (userNits != BrightnessMappingStrategy.INVALID_NITS) {
