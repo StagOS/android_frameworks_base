@@ -111,6 +111,7 @@ public class InternetDialogDelegate implements
     private TelephonyManager mTelephonyManager;
     @Nullable
     private AlertDialog mAlertDialog;
+    private Context mContext;
     private final UiEventLogger mUiEventLogger;
     private final InternetDialogController mInternetDialogController;
     private TextView mInternetDialogTitle;
@@ -200,6 +201,7 @@ public class InternetDialogDelegate implements
         }
 
         // Save the context that is wrapped with our theme.
+        mContext = context;
         mHandler = handler;
         mBackgroundExecutor = executor;
         mInternetDialogManager = internetDialogManager;
