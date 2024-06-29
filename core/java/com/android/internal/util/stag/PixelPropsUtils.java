@@ -118,7 +118,6 @@ public class PixelPropsUtils {
                 "com.nhs.online.nhsonline",
                 "com.amazon.avod.thirdpartyclient",
                 "com.disney.disneyplus",
-                "com.netflix.mediaclient",
                 "in.startv.hotstar",
                 "jp.id_credit_sp2.android"
         ));
