@@ -178,7 +178,8 @@ public class CommandQueue extends IStatusBar.Stub implements
     private static final int MSG_IMMERSIVE_CHANGED = 78 << MSG_SHIFT;
     private static final int MSG_SET_QS_TILES = 79 << MSG_SHIFT;
     private static final int MSG_ENTER_DESKTOP = 80 << MSG_SHIFT;
-    private static final int MSG_TOGGLE_CAMERA_FLASH = 80 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_CAMERA_FLASH = 81 << MSG_SHIFT;
+
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
     public static final int FLAG_EXCLUDE_RECENTS_PANEL = 1 << 1;
@@ -1946,11 +1947,6 @@ public class CommandQueue extends IStatusBar.Stub implements
                         mCallbacks.get(i).immersiveModeChanged(rootDisplayAreaId, isImmersiveMode);
                     }
                     break;
-                case MSG_TOGGLE_CAMERA_FLASH:
-                    for (int i = 0; i < mCallbacks.size(); i++) {
-                        mCallbacks.get(i).toggleCameraFlash();
-                    }
-                    break;
                 case MSG_ENTER_DESKTOP: {
                     args = (SomeArgs) msg.obj;
                     int displayId = args.argi1;
@@ -1959,6 +1955,11 @@ public class CommandQueue extends IStatusBar.Stub implements
                     }
                     break;
                 }
+                case MSG_TOGGLE_CAMERA_FLASH:
+                    for (int i = 0; i < mCallbacks.size(); i++) {
+                        mCallbacks.get(i).toggleCameraFlash();
+                    }
+                    break;
             }
         }
     }
