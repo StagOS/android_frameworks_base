@@ -294,7 +294,7 @@ public class FileIntegrityService extends SystemService {
     private class FileIntegrityServiceShellCommand extends ShellCommand {
         @Override
         public int onCommand(String cmd) {
-            if (!Build.IS_DEBUGGABLE) {
+            if (!Build.IS_ENG) {
                 return -1;
             }
             if (cmd == null) {

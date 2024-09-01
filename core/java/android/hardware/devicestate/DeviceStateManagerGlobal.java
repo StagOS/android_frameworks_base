@@ -53,7 +53,7 @@ import java.util.concurrent.Executor;
 public final class DeviceStateManagerGlobal {
     private static DeviceStateManagerGlobal sInstance;
     private static final String TAG = "DeviceStateManagerGlobal";
-    private static final boolean DEBUG = Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Build.IS_ENG;
 
     // TODO(b/325124054): Remove when system server refactor is completed
     private static int[] sFoldedDeviceStates = new int[0];

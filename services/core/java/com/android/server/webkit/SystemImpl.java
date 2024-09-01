@@ -56,7 +56,7 @@ import java.util.List;
  * @hide
  */
 public class SystemImpl implements SystemInterface {
-    private static final boolean DEBUG = Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Build.IS_ENG;
     private static final String TAG = SystemImpl.class.getSimpleName();
     private static final String TAG_START = "webviewproviders";
     private static final String TAG_WEBVIEW_PROVIDER = "webviewprovider";
@@ -248,7 +248,7 @@ public class SystemImpl implements SystemInterface {
 
     @Override
     public boolean systemIsDebuggable() {
-        return Build.IS_DEBUGGABLE;
+        return Build.IS_ENG;
     }
 
     @Override

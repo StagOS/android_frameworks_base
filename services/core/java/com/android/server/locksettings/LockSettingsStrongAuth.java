@@ -50,7 +50,7 @@ import com.android.internal.widget.LockPatternUtils.StrongAuthTracker;
 public class LockSettingsStrongAuth {
 
     private static final String TAG = "LockSettingsStrongAuth";
-    private static final boolean DEBUG = Build.IS_DEBUGGABLE && Log.isLoggable(TAG, Log.DEBUG);
+    private static final boolean DEBUG = Build.IS_ENG && Log.isLoggable(TAG, Log.DEBUG);
 
     private static final int MSG_REQUIRE_STRONG_AUTH = 1;
     private static final int MSG_REGISTER_TRACKER = 2;

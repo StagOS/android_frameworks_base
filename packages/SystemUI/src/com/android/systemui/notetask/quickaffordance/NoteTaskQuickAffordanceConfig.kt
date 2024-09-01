@@ -198,5 +198,5 @@ private fun KeyguardQuickAffordanceRepository.createConfigSelectedFlow(key: Stri
     }
 
 private inline fun Any.logDebug(message: () -> String) {
-    if (Build.IS_DEBUGGABLE) Log.d(this::class.java.simpleName, message())
+    if (Build.IS_ENG) Log.d(this::class.java.simpleName, message())
 }

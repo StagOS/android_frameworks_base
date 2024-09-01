@@ -282,7 +282,7 @@ public class SurfaceControlRegistry {
      *   adb reboot
      */
     final static void initializeCallStackDebugging() {
-        if (sCallStackDebuggingInitialized || !Build.IS_DEBUGGABLE) {
+        if (sCallStackDebuggingInitialized || !Build.IS_ENG) {
             // Return early if already initialized or this is not a debug build
             return;
         }

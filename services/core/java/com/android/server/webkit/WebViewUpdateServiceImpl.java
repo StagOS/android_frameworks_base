@@ -66,7 +66,7 @@ import java.util.List;
  */
 class WebViewUpdateServiceImpl implements WebViewUpdateServiceInterface {
     private static final String TAG = WebViewUpdateServiceImpl.class.getSimpleName();
-    private static final boolean DEBUG = Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Build.IS_ENG;
 
     private static class WebViewPackageMissingException extends Exception {
         WebViewPackageMissingException(String message) {

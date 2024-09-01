@@ -219,7 +219,7 @@ public final class DeviceConfigService extends Binder {
       }
 
       private static void log(String msg) {
-        if (Build.IS_DEBUGGABLE) {
+        if (Build.IS_ENG) {
             Slog.wtf(TAG, msg);
         } else {
             Slog.e(TAG, msg);

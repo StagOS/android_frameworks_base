@@ -338,7 +338,7 @@ public class EventLog {
      * @return The number of bytes written
      */
     public static int writeEvent(int tag, int value) {
-        if (!Build.IS_DEBUGGABLE) {
+        if (!Build.IS_ENG) {
             return 0;
         }
 
@@ -352,7 +352,7 @@ public class EventLog {
      * @return The number of bytes written
      */
     public static int writeEvent(int tag, long value) {
-        if (!Build.IS_DEBUGGABLE) {
+        if (!Build.IS_ENG) {
             return 0;
         }
 
@@ -366,7 +366,7 @@ public class EventLog {
      * @return The number of bytes written
      */
     public static int writeEvent(int tag, float value) {
-        if (!Build.IS_DEBUGGABLE) {
+        if (!Build.IS_ENG) {
             return 0;
         }
 
@@ -380,7 +380,7 @@ public class EventLog {
      * @return The number of bytes written
      */
     public static int writeEvent(int tag, String str) {
-        if (!Build.IS_DEBUGGABLE) {
+        if (!Build.IS_ENG) {
             return 0;
         }
 
@@ -394,7 +394,7 @@ public class EventLog {
      * @return The number of bytes written
      */
     public static int writeEvent(int tag, Object... list) {
-        if (!Build.IS_DEBUGGABLE) {
+        if (!Build.IS_ENG) {
             return 0;
         }
 
@@ -409,7 +409,7 @@ public class EventLog {
      */
     public static void readEvents(int[] tags, Collection<Event> output)
             throws IOException {
-        if (!Build.IS_DEBUGGABLE) {
+        if (!Build.IS_ENG) {
             return;
         }
 
@@ -428,7 +428,7 @@ public class EventLog {
     public static void readEventsOnWrapping(int[] tags, long timestamp,
             Collection<Event> output)
             throws IOException {
-        if (!Build.IS_DEBUGGABLE) {
+        if (!Build.IS_ENG) {
             return;
         }
 

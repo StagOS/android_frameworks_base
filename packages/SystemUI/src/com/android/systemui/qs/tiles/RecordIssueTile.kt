@@ -91,7 +91,7 @@ constructor(
      * creating a distince SELinux context for com.android.systemui) is complex and will take time
      * to implement.
      */
-    override fun isAvailable(): Boolean = android.os.Build.IS_DEBUGGABLE && recordIssueQsTile()
+    override fun isAvailable(): Boolean = android.os.Build.IS_ENG && recordIssueQsTile()
 
     override fun newTileState(): QSTile.BooleanState =
         QSTile.BooleanState().apply {

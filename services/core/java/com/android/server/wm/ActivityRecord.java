@@ -9411,7 +9411,7 @@ final class ActivityRecord extends WindowToken implements WindowManagerService.A
             final String errorMessage = "Can't change activity type once set: " + this
                     + " activityType=" + activityTypeToString(getActivityType()) + ", was "
                     + activityTypeToString(activityType);
-            if (Build.IS_DEBUGGABLE) {
+            if (Build.IS_ENG) {
                 throw new IllegalStateException(errorMessage);
             }
             Slog.w(TAG, errorMessage);

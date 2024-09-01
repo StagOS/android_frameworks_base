@@ -52,7 +52,7 @@ import java.util.Objects;
  */
 public class AdaptiveAuthService extends SystemService {
     private static final String TAG = "AdaptiveAuthService";
-    private static final boolean DEBUG = Build.IS_DEBUGGABLE && Log.isLoggable(TAG, Log.DEBUG);
+    private static final boolean DEBUG = Build.IS_ENG && Log.isLoggable(TAG, Log.DEBUG);
 
     @VisibleForTesting
     static final int MAX_ALLOWED_FAILED_AUTH_ATTEMPTS = 5;

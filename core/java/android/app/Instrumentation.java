@@ -106,7 +106,7 @@ public class Instrumentation {
     private static final boolean VERBOSE = Log.isLoggable(TAG, Log.VERBOSE);
 
     // If set, will print the stack trace for activity starts within the process
-    static final boolean DEBUG_START_ACTIVITY = Build.IS_DEBUGGABLE &&
+    static final boolean DEBUG_START_ACTIVITY = Build.IS_ENG &&
             SystemProperties.getBoolean("persist.wm.debug.start_activity", false);
 
     /**

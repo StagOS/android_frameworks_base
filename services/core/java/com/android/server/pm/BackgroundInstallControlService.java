@@ -161,7 +161,7 @@ public class BackgroundInstallControlService extends SystemService {
             if (Flags.bicClient()) {
                 mService.enforceCallerPermissions();
             }
-            if (!Build.IS_DEBUGGABLE) {
+            if (!Build.IS_ENG) {
                 return mService.getBackgroundInstalledPackages(flags, userId);
             }
             // The debug.transparency.bg-install-apps (only works for debuggable builds)

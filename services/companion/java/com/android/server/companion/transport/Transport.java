@@ -51,7 +51,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public abstract class Transport {
     protected static final String TAG = "CDM_CompanionTransport";
-    protected static final boolean DEBUG = Build.IS_DEBUGGABLE;
+    protected static final boolean DEBUG = Build.IS_ENG;
 
     static final int MESSAGE_RESPONSE_SUCCESS = 0x33838567; // !SUC
     static final int MESSAGE_RESPONSE_FAILURE = 0x33706573; // !FAI

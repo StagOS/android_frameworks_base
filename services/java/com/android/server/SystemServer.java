@@ -954,7 +954,7 @@ public final class SystemServer implements Dumpable {
             }
 
             // Attach JVMTI agent if this is a debuggable build and the system property is set.
-            if (Build.IS_DEBUGGABLE) {
+            if (Build.IS_ENG) {
                 // Property is of the form "library_path=parameters".
                 String jvmtiAgent = SystemProperties.get("persist.sys.dalvik.jvmtiagent");
                 if (!jvmtiAgent.isEmpty()) {
@@ -1470,7 +1470,7 @@ public final class SystemServer implements Dumpable {
 
         // TODO(b/277600174): Start CpuMonitorService on all builds and not just on debuggable
         // builds once the Android JobScheduler starts using this service.
-        if (Build.IS_DEBUGGABLE || Build.IS_ENG) {
+        if (Build.IS_ENG || Build.IS_ENG) {
           // Service for CPU monitor.
           t.traceBegin("CpuMonitorService");
           mSystemServiceManager.startService(CpuMonitorService.class);
@@ -1524,7 +1524,7 @@ public final class SystemServer implements Dumpable {
                 PackageManager.FEATURE_VR_MODE_HIGH_PERFORMANCE);
 
         // For debugging RescueParty
-        if (Build.IS_DEBUGGABLE && SystemProperties.getBoolean("debug.crash_system", false)) {
+        if (Build.IS_ENG && SystemProperties.getBoolean("debug.crash_system", false)) {
             throw new RuntimeException();
         }
 
@@ -1743,7 +1743,7 @@ public final class SystemServer implements Dumpable {
             mSystemServiceManager.startService(PinnerService.class);
             t.traceEnd();
 
-            if (Build.IS_DEBUGGABLE && ProfcollectForwardingService.enabled()) {
+            if (Build.IS_ENG && ProfcollectForwardingService.enabled()) {
                 t.traceBegin("ProfcollectForwardingService");
                 mSystemServiceManager.startService(ProfcollectForwardingService.class);
                 t.traceEnd();
@@ -2748,7 +2748,7 @@ public final class SystemServer implements Dumpable {
             mSystemServiceManager.startService(WEAR_DISPLAY_SERVICE_CLASS);
             t.traceEnd();
 
-            if (Build.IS_DEBUGGABLE) {
+            if (Build.IS_ENG) {
                 t.traceBegin("StartWearDebugService");
                 mSystemServiceManager.startService(WEAR_DEBUG_SERVICE_CLASS);
                 t.traceEnd();

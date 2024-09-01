@@ -131,7 +131,7 @@ public class KeyguardStatusView extends GridLayout {
 
     @Override
     public ViewPropertyAnimator animate() {
-        if (Build.IS_DEBUGGABLE) {
+        if (Build.IS_ENG) {
             throw new IllegalArgumentException(
                     "KeyguardStatusView does not support ViewPropertyAnimator. "
                             + "Use PropertyAnimator instead.");

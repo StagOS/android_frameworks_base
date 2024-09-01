@@ -61,7 +61,7 @@ import java.util.List;
  */
 class MenuInfoRepository {
     private static final String TAG = "MenuInfoRepository";
-    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG) || Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Log.isLoggable(TAG, Log.DEBUG) || Build.IS_ENG;
 
     @FloatRange(from = 0.0, to = 1.0)
     private static final float DEFAULT_MENU_POSITION_X_PERCENT = 1.0f;

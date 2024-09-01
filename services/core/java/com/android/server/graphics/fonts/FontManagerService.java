@@ -282,7 +282,7 @@ public final class FontManagerService extends IFontManager.Stub {
         String[] certs = mContext.getResources().getStringArray(
                 R.array.config_fontManagerServiceCerts);
 
-        if (mDebugCertFilePath != null && Build.IS_DEBUGGABLE) {
+        if (mDebugCertFilePath != null && Build.IS_ENG) {
             String[] tmp = new String[certs.length + 1];
             System.arraycopy(certs, 0, tmp, 0, certs.length);
             tmp[certs.length] = mDebugCertFilePath;

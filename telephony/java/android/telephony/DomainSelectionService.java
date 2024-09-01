@@ -306,7 +306,7 @@ public abstract class DomainSelectionService extends Service {
             return "{ slotIndex=" + mSlotIndex
                     + ", subId=" + mSubId
                     + ", callId=" + mCallId
-                    + ", address=" + (Build.IS_DEBUGGABLE ? mAddress : "***")
+                    + ", address=" + (Build.IS_ENG ? mAddress : "***")
                     + ", type=" + mSelectorType
                     + ", videoCall=" + mIsVideoCall
                     + ", emergency=" + mIsEmergency

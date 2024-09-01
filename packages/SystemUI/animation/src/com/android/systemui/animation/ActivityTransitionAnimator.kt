@@ -98,7 +98,7 @@ class ActivityTransitionAnimator(
             )
 
         // TODO(b/288507023): Remove this flag.
-        @JvmField val DEBUG_TRANSITION_ANIMATION = Build.IS_DEBUGGABLE
+        @JvmField val DEBUG_TRANSITION_ANIMATION = Build.IS_ENG
 
         private val DEFAULT_TRANSITION_ANIMATOR = TransitionAnimator(TIMINGS, INTERPOLATORS)
         private val DEFAULT_DIALOG_TO_APP_ANIMATOR =

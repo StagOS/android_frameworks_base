@@ -891,7 +891,7 @@ public final class OverlayManagerService extends SystemService {
                     }
                     Slog.d(TAG, "commit failed: " + e.getMessage(), e);
                     throw new SecurityException("commit failed"
-                            + (DEBUG || Build.IS_DEBUGGABLE ? ": " + e.getMessage() : ""));
+                            + (DEBUG || Build.IS_ENG ? ": " + e.getMessage() : ""));
                 }
             } finally {
                 traceEnd(TRACE_TAG_RRO);

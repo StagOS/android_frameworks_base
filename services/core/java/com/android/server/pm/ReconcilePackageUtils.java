@@ -58,7 +58,7 @@ import java.util.Map;
 final class ReconcilePackageUtils {
     // TODO(b/308573259): with allow-list, we should be able to disallow such installs even in
     // debuggable builds.
-    private static final boolean ALLOW_NON_PRELOADS_SYSTEM_SHAREDUIDS = Build.IS_DEBUGGABLE
+    private static final boolean ALLOW_NON_PRELOADS_SYSTEM_SHAREDUIDS = Build.IS_ENG
             || !Flags.restrictNonpreloadsSystemShareduids();
 
     public static List<ReconciledPackage> reconcilePackages(

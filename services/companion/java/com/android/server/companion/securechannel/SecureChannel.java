@@ -48,7 +48,7 @@ import java.util.UUID;
  */
 public class SecureChannel {
     private static final String TAG = "CDM_SecureChannel";
-    private static final boolean DEBUG = Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Build.IS_ENG;
 
     private static final int VERSION = 1;
     private static final int HEADER_LENGTH = 6;

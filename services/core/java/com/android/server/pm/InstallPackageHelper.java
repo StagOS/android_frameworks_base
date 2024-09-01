@@ -2699,7 +2699,7 @@ final class InstallPackageHelper {
                     if (disabledPs != null) {
                         dataOwnerPkg = disabledPs.getPkg();
                     }
-                    if (!Build.IS_DEBUGGABLE && !dataOwnerPkg.isDebuggable()) {
+                    if (!Build.IS_ENG && !dataOwnerPkg.isDebuggable()) {
                         // Only restrict non-debuggable builds and non-debuggable version of the app
                         try {
                             PackageManagerServiceUtils.checkDowngrade(dataOwnerPkg, pkgLite);

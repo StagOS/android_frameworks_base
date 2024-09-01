@@ -171,7 +171,7 @@ final class RemoteFieldClassificationService
                                     @Override
                                     public void onSuccess(FieldClassificationResponse response) {
                                         if (sDebug) {
-                                            if (Build.IS_DEBUGGABLE) {
+                                            if (Build.IS_ENG) {
                                                 Slog.d(TAG, "onSuccess Response: " + response);
                                             } else {
                                                 String msg = "";

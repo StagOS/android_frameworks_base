@@ -56,14 +56,14 @@ object DebugLogger {
      * Beware, the [debugLog] content is **REMOVED FROM SOURCE AND BINARY** in Release builds.
      *
      * @param enabled: whether or not the message should be logged. By default, it is
-     *   [Build.IS_DEBUGGABLE].
+     *   [Build.IS_ENG].
      * @param priority: type of this log. By default, it is [Log.DEBUG].
      * @param tag: identifies the source of a log. By default, it is the receiver's simple name.
      * @param error: a [Throwable] to log.
      * @param message: a lazily evaluated message you wish to log.
      */
     inline fun Any.debugLog(
-        enabled: Boolean = Build.IS_DEBUGGABLE,
+        enabled: Boolean = Build.IS_ENG,
         priority: Int = Log.DEBUG,
         tag: String = this::class.simpleName.orEmpty(),
         error: Throwable? = null,

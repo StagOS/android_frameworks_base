@@ -69,7 +69,7 @@ import java.util.function.Consumer;
  */
 public class ProxyManager {
     private static final String LOG_TAG = "ProxyManager";
-    private static final boolean DEBUG = Log.isLoggable(LOG_TAG, Log.DEBUG) && Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Log.isLoggable(LOG_TAG, Log.DEBUG) && Build.IS_ENG;
 
     // Names used to populate ComponentName and ResolveInfo in connection.mA11yServiceInfo and in
     // the infos of connection.setInstalledAndEnabledServices

@@ -105,7 +105,7 @@ public class SystemUiSystemPropertiesFlags {
     /** The primary, immutable resolver returned by getResolver() */
     private static final FlagResolver
             MAIN_RESOLVER =
-            Build.IS_DEBUGGABLE ? new DebugResolver() : new ProdResolver();
+            Build.IS_ENG ? new DebugResolver() : new ProdResolver();
 
     /**
      * On debuggable builds, this can be set to override the resolver returned by getResolver().
@@ -118,7 +118,7 @@ public class SystemUiSystemPropertiesFlags {
 
     /** Get the resolver for this device configuration. */
     public static FlagResolver getResolver() {
-        if (Build.IS_DEBUGGABLE && TEST_RESOLVER != null) {
+        if (Build.IS_ENG && TEST_RESOLVER != null) {
             Log.i("SystemUiSystemPropertiesFlags", "Returning debug resolver " + TEST_RESOLVER);
             return TEST_RESOLVER;
         }

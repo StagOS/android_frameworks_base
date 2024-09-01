@@ -157,7 +157,7 @@ public class PackageInstallerService extends IPackageInstaller.Stub implements
     private static final String TAG = "PackageInstaller";
     private static final boolean LOGD = Log.isLoggable(TAG, Log.DEBUG);
 
-    private static final boolean DEBUG = Build.IS_DEBUGGABLE;
+    private static final boolean DEBUG = Build.IS_ENG;
 
     // TODO: remove outstanding sessions when installer package goes away
     // TODO: notify listeners in other users when package has been installed there
@@ -751,7 +751,7 @@ public class PackageInstallerService extends IPackageInstaller.Stub implements
             }
         }
 
-        if (Build.IS_DEBUGGABLE || PackageManagerServiceUtils.isSystemOrRoot(callingUid)) {
+        if (Build.IS_ENG || PackageManagerServiceUtils.isSystemOrRoot(callingUid)) {
             params.installFlags |= PackageManager.INSTALL_ALLOW_DOWNGRADE;
         } else {
             params.installFlags &= ~PackageManager.INSTALL_ALLOW_DOWNGRADE;
@@ -838,7 +838,7 @@ public class PackageInstallerService extends IPackageInstaller.Stub implements
 
         if ((params.installFlags & PackageManager.INSTALL_BYPASS_LOW_TARGET_SDK_BLOCK) != 0
                 && !PackageManagerServiceUtils.isSystemOrRootOrShell(callingUid)
-                && !Build.IS_DEBUGGABLE) {
+                && !Build.IS_ENG) {
             // If the bypass flag is set, but not running as system root or shell then remove
             // the flag
             params.installFlags &= ~PackageManager.INSTALL_BYPASS_LOW_TARGET_SDK_BLOCK;

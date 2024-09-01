@@ -50,7 +50,7 @@ constructor(@Main resources: Resources, globalSettings: GlobalSettings, dumpMana
 
     init {
         triggerFaceAuthOnWakeUpFrom =
-            if (Build.IS_DEBUGGABLE) {
+            if (Build.IS_ENG) {
                 // Update face wake triggers via adb on debuggable builds:
                 // ie: adb shell settings put global face_wake_triggers "1\|4" &&
                 //     adb shell am crash com.android.systemui

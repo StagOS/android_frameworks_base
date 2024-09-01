@@ -24,7 +24,7 @@ object DebugLogger {
 
     @JvmName("logcatMessage")
     inline fun Any.debugLog(
-        enabled: Boolean = Build.IS_DEBUGGABLE,
+        enabled: Boolean = Build.IS_ENG,
         priority: Int = Log.DEBUG,
         tag: String = this::class.simpleName.orEmpty(),
         error: Throwable? = null,

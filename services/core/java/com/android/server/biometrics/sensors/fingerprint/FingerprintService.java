@@ -1330,7 +1330,7 @@ public class FingerprintService extends SystemService {
      */
     void sendFingerprintReEnrollNotification() {
         Utils.checkPermissionOrShell(getContext(), MANAGE_FINGERPRINT);
-        if (Build.IS_DEBUGGABLE) {
+        if (Build.IS_ENG) {
             final long identity = Binder.clearCallingIdentity();
             try {
                 final Pair<Integer, ServiceProvider> provider = mRegistry.getSingleProvider();

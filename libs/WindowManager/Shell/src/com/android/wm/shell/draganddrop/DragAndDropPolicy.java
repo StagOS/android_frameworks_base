@@ -283,7 +283,7 @@ public class DragAndDropPolicy {
         } else {
             final PendingIntent launchIntent =
                     session.appData.getParcelableExtra(EXTRA_PENDING_INTENT);
-            if (Build.IS_DEBUGGABLE) {
+            if (Build.IS_ENG) {
                 if (!user.equals(launchIntent.getCreatorUserHandle())) {
                     Log.e(TAG, "Expected app intent's EXTRA_USER to match pending intent user");
                 }
