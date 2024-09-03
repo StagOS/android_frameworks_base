@@ -217,7 +217,7 @@ object Flags {
 
     // 300 - power menu
     // TODO(b/254512600): Tracking Bug
-    @JvmField val POWER_MENU_LITE = releasedFlag("power_menu_lite")
+    @JvmField val POWER_MENU_LITE = unreleasedFlag("power_menu_lite")
 
     // 400 - smartspace
 
